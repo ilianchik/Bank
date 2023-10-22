@@ -75,3 +75,37 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+createUsernames(accounts);
+console.log(accounts);
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcDisplayBalance(account1.movements);
+
+///////
+
+// const calcAverageHumanAge = function (ages) {
+//   const humanAge = ages
+//     .map(e => {
+//       if (e <= 2) return 2 * e;
+//       else return 16 + e * 4;
+//     })
+//     .filter(e => e >= 18);
+//   console.log(humanAge);
+//   const average = humanAge.reduce((acc, e) => (acc += e), 0) / humanAge.length;
+//   console.log(average);
+// };
+// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
